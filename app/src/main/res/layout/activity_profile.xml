@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -6,9 +11,28 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
     tools:context=".ProfileActivity">
+    <RelativeLayout
+        android:id="@+id/op"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:src="@drawable/index"
+            app:civ_border_width="8dp"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:id="@+id/iv8"
+            android:focusedByDefault="true"
+            />
+
+    </RelativeLayout>
 
 
     <LinearLayout
+        android:layout_below="@+id/op"
         android:orientation="vertical"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -167,3 +191,4 @@
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
 </RelativeLayout>
+</ScrollView>
