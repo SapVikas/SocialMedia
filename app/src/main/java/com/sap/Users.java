@@ -4,21 +4,22 @@ package com.sap;
 public class Users {
 
 
-        private String mob;
+        private String mob,name;
         private String dob;
 
         public Users(){
 
         }
 
-        public Users( String dob, String mob) {
+        public Users( String name,String dob, String mob) {
             this.dob=dob;
+            this.name=name;
             this.mob=mob;
         }
 
 
 
-
+public String getName(){return name;}
         public String getDob()
         {
             return dob;

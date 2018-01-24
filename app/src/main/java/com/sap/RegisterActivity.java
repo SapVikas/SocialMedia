@@ -135,9 +135,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     }
 
     private void userInfo() {
+      String name2 = editTextName.getText().toString();
       String dob2 = editTextDob.getText().toString();
       String mob2 = editTextMob.getText().toString();
-      Users sap = new Users(dob2,mob2);
+      Users sap = new Users(name2,dob2,mob2);
       db = FirebaseDatabase.getInstance().getReference("users");
       FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
       String uid = user.getUid();
