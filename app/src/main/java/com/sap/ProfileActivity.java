@@ -8,9 +8,13 @@ import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,11 +40,12 @@ import de.hdodenhof.circleimageview.CircleImageView;
 public class ProfileActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final int PICK_IMAGE_REQUEST = 101;
+    private static final String TAG = "yo yo";
     private FirebaseAuth firebaseAuth;
-
-    private TextView textViewUserEmail , name,dob,mob;
+    LinearLayout abc;
+    private TextView textViewUserEmail , name,dob,mob,changepswrd,bpr;
     private Button buttonLogout;
-
+    ProgressDialog pd;
     private FirebaseUser user1;
     private DatabaseReference db;
      CircleImageView profpic;
@@ -61,12 +66,17 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         FirebaseUser user = firebaseAuth.getCurrentUser();
 
         textViewUserEmail = (TextView) findViewById(R.id.textViewUserEmail);
+        bpr=findViewById(R.id.bpr);
+        abc=findViewById(R.id.abc);
         name=findViewById(R.id.textViewUserName);
         dob=findViewById(R.id.textViewUserDob);
         mob=findViewById(R.id.textViewUserMob);
+        changepswrd=findViewById(R.id.bpswrd);
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
         profpic = findViewById(R.id.iv8);
         profpic.setOnClickListener(this);
+        changepswrd.setOnClickListener(this);
+        bpr.setOnClickListener(this);
 
         name.setText(user.getDisplayName());
         textViewUserEmail.setText(user.getEmail());
@@ -123,14 +133,42 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
     }
     @Override
     public void onClick(View view) {
-        if(view == buttonLogout){
+        if (view == buttonLogout) {
             firebaseAuth.signOut();
             finish();
             startActivity(new Intent(this, LoginActivity.class));
         }
-        if (view==profpic){
+        if (view == profpic) {
             showImageChooser();
         }
+        if (view == changepswrd) {
+            Intent i = new Intent(ProfileActivity.this,ChangePassword.class);
+            startActivity(i);
+        }
+        if (view==bpr){
+            pd= new ProgressDialog(this);
+            pd.setMessage("Sending password reset email");
+            pd.show();
+            resetPassword();
+        }
+
+    }
+
+    private void resetPassword() {
+        FirebaseAuth auth = FirebaseAuth.getInstance();
+        FirebaseUser user = auth.getCurrentUser();
+        String emailAddress = user.getEmail();
+
+        auth.sendPasswordResetEmail(emailAddress)
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        if (task.isSuccessful()) {
+                            pd.dismiss();
+                            Toast.makeText(getApplicationContext(),"Verification email sent",Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                });
     }
 
     private void showImageChooser() {

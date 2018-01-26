@@ -32,6 +32,7 @@
 
 
     <LinearLayout
+        android:id="@+id/abc"
         android:layout_below="@+id/op"
         android:orientation="vertical"
         android:layout_width="match_parent"
@@ -154,6 +155,7 @@
          />
     </LinearLayout>
     </LinearLayout>
+
         <Button
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -162,5 +164,24 @@
             android:id="@+id/buttonLogout"
             android:layout_gravity="center_horizontal" />
     </LinearLayout>
+
+    <TextView
+        android:id="@+id/bpswrd"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:text="Change Password" />
+
+    <TextView
+        android:id="@+id/bpr"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_alignParentBottom="true"
+        android:text="Rest Password" />
+
+
 </RelativeLayout>
 </ScrollView>
