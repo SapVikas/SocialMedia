@@ -11,22 +11,33 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
 
     tools:context=".ProfileActivity">
+
     <RelativeLayout
         android:id="@+id/op"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        >
+        android:layout_alignEnd="@+id/bpswrd"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/bpswrd">
 
         <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/iv8"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            android:src="@drawable/index"
-            app:civ_border_width="2dp"
             android:layout_centerHorizontal="true"
             android:layout_centerVertical="true"
-            android:id="@+id/iv8"
             android:focusedByDefault="true"
-            />
+            android:src="@drawable/index"
+            app:civ_border_width="2dp" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            app:srcCompat="@mipmap/ic_launcher_round" />
 
     </RelativeLayout>
 
@@ -180,7 +191,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:layout_alignParentBottom="true"
-        android:text="Rest Password" />
+        android:text="Reset Password" />
 
 
 </RelativeLayout>

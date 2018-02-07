@@ -1,6 +1,6 @@
 package com.sap;
 
-import android.app.ProgressDialog;
+import android.app.*;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
@@ -51,6 +52,7 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
      CircleImageView profpic;
      Uri filePath;
     String profileImageUrl;
+    ImageView not;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -72,12 +74,13 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
         dob=findViewById(R.id.textViewUserDob);
         mob=findViewById(R.id.textViewUserMob);
         changepswrd=findViewById(R.id.bpswrd);
+        not = findViewById(R.id.imageView);
         buttonLogout = (Button) findViewById(R.id.buttonLogout);
         profpic = findViewById(R.id.iv8);
         profpic.setOnClickListener(this);
         changepswrd.setOnClickListener(this);
         bpr.setOnClickListener(this);
-
+        not.setOnClickListener(this);
         name.setText(user.getDisplayName());
         textViewUserEmail.setText(user.getEmail());
         buttonLogout.setOnClickListener(this);
@@ -151,7 +154,10 @@ public class ProfileActivity extends AppCompatActivity implements View.OnClickLi
             pd.show();
             resetPassword();
         }
-
+        if (view==not){
+            Intent i = new Intent(this, Notification.class);
+            startActivity(i);
+        }
     }
 
     private void resetPassword() {
